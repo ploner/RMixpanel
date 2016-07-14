@@ -22,19 +22,10 @@ mixpanelGetData <- function(
   }
   
   if (!loadFromFile) {
-    secondsSince1970 = trunc(unclass(Sys.time()))
-    endpoint = if(method == "export/") 'http://data.mixpanel.com/api/2.0' else 'http://mixpanel.com/api/2.0'
-    
-    args$expire = secondsSince1970 + validitySeconds
-    args$api_key = account$apiKey
-    args = args[order(names(args))]
-    
-    paramsJoined = ""
-    for (name in names(args)) {
-      paramsJoined = paste(paramsJoined, name, "=", args[name], sep="")
-    }
-    paramsJoined = paste(paramsJoined, account$apiSecret, sep='')
-    hash = digest::digest(paramsJoined, "md5", serialize=FALSE)
+    if(method == "export/") 
+      endpoint = paste('https://', account$apiSecret, '@data.mixpanel.com/api/2.0', sep='')
+    else 
+      endpoint = paste('https://', account$apiSecret, '@mixpanel.com/api/2.0', sep='')
     
     url = paste(endpoint, "/", method, "?", sep="")
     for (name in names(args)) {
@@ -43,7 +34,6 @@ mixpanelGetData <- function(
         arg = URLencode(arg, reserved=TRUE)
       url = paste(url, name, "=", arg, "&", sep="")
     }
-    url = paste(url, "sig=", hash, sep="")
     if (verbose)
       cat("## Download ", url, "...\n", sep="")
     
