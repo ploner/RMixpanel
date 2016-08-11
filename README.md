@@ -19,6 +19,7 @@ make the parameterization more convenient and do the conversion from JSON to a c
     - update or delete a people profile using `mixpanelUpdateProfile`.
   - `stream/query/`: get events of selected people profiles using `mixpanelGetEventsForProfiles`.
   - `export/`: get event data as R matrix using `mixpanelGetEvents`.
+  - `jql/`: perform custom queries using `mixpanelJQLQuery`.
 - Get people profile count for custom queries using `mixpanelGetProfilesCount`. 
 - Pagination for the endpoint `export/`. This allows querying data for long time spans using multiple requests.  
 - Different levels of verbosity (log).
@@ -29,7 +30,7 @@ if the property count varies over requested events or people profiles.
 
 ``` r
 require(devtools)
-devtools::install_github("7factory/RMixpanel")
+devtools::install_github("ploner/RMixpanel")
 require(RMixpanel)
 ```
 
@@ -163,3 +164,22 @@ Here an example without transforming the resulting JSON into handy R objects:
 ##   ...
 ```
 
+
+#### Perform a custom JQL Query 
+
+The JQL Query language opens a wide spectrum of possibilities. Here we show only a very basic example - getting the event count per user ('distinct_id'). For more complex queries consult also the Mixpanel JQL API Reference: https://mixpanel.com/help/reference/jql/api-reference#api/transformations/reduce.   
+
+``` r
+jqlQuery <- '
+function main() {
+  return Events({
+    from_date: "2016-01-01",
+    to_date: "2016-12-31"
+  })
+  .groupByUser(mixpanel.reducer.count())
+}'
+
+res <- mixpanelJQLQuery(account, jqlQuery,
+                        columnNames=c("distinctID", "Count"), toNumeric=2)
+hist(res$Count)
+```
