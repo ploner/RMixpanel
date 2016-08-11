@@ -70,10 +70,13 @@ In order to use the various methods of this package, we need to save the account
 #### Weekly retentions as percentages
 
 ``` r
-> mixpanelGetRetention(account, born_event="AppInstall", event="WatchedItem", 
-                       from=20150701, to=20151101, unit="week", percentages=TRUE)
+> retentions <- mixpanelGetRetention(account, born_event="AppInstall", event="WatchedItem", 
+                                     from=20150701, to=20151101, unit="week")
+> print(retentions)
 ## Example output:
-##            count         0         1         2         3       ... ...
+## Retention Matrix
+## Row names are Cohort Start Dates. Column names are Periods (0 -> 0 to 1 units)
+##            Count         0         1         2         3       ... ...
 ## 2015-06-29    17  94.11765 29.411765 29.411765 29.411765 ...
 ## 2015-07-06    38 100.00000 31.578947 18.421050 ...       
 ...
