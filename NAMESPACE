@@ -1,4 +1,5 @@
-importFrom("utils", "URLencode", "download.file") 
+importFrom("utils", "URLencode", "download.file")
+importFrom("graphics", "plot", "axis", "legend",  "lines",  "title") 
 
 S3method(merge, matrix)
 S3method(print, retention)
@@ -7,11 +8,20 @@ S3method(plot, retention)
 export(
 plot.retention,
 print.retention,
-merge.matrix,mixpanelCreateAccount,mixpanelGetAddiction,
-mixpanelGetData,mixpanelGetEvents,
-mixpanelGetEventsFromFiles,mixpanelGetEventsForProfiles,mixpanelGetProfiles,
-mixpanelGetProfilesCount,mixpanelGetRetention,mixpanelGetSegmentation,
+merge.matrix,
+mixpanelCreateAccount,
+mixpanelGetAddiction,
+mixpanelGetData,
+mixpanelGetEvents,
+mixpanelGetEventsFromFiles,
+mixpanelGetEventsForProfiles,
+mixpanelGetProfiles,
+mixpanelGetProfilesCount,
+mixpanelGetRetention,
+mixpanelGetSegmentation,
 mixpanelUpdateProfile,
+mixpanelJQLQuery,
 createDateSequence,
 eventsJson2RMatrix,
-profilesJson2RMatrix)
+profilesJson2RMatrix
+)
