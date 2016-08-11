@@ -13,7 +13,7 @@ mixpanelJQLQuery(account, jqlString, jqlScripts, path=".", columnNames, toNumeri
   \item{account}{A mixpanel account, as defined in \code{mixpanelCreateAccount}.}
   \item{jqlString}{JQL script as string.}
   \item{jqlScripts}{List of JQL script file names.}
-  \item{path}{Path to search JS files.}
+  \item{paths}{Paths to search JS files.}
   \item{columnNames}{Column names for the resulting data.frame. }
   \item{toNumeric}{Column indices which should be converted to numeric.}
 }

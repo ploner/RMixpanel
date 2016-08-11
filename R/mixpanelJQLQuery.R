@@ -2,7 +2,7 @@ mixpanelJQLQuery <- function(
   account,      # Mixpanel account.
   jqlString,    # Option (1): JQL script as string.
   jqlScripts,   # Option (2): List of JQL script file names.
-  path=".",     # Path to search JS files.
+  paths=".",    # Path to search JS files.
   columnNames,  # Column names for the resulting data.frame.
   toNumeric=c() # Column indices which should be converted to numeric.
 ) {
@@ -15,13 +15,16 @@ mixpanelJQLQuery <- function(
     
   } else {
     for(i in 1:length(jqlScripts))
-      cat(readLines(file.path(path, jqlScripts[i])), 
-          file=filePath, append=(i>1))
+      for(path in paths) {
+        fn <- file.path(path, jqlScripts[i])
+        if(file.exists((fn)))
+          cat(readLines(fn), file=filePath, append=(i>1))
+      }
   }
   
   ## Perform query by CURL.
   curlCall <- paste0("curl https://mixpanel.com/api/2.0/jql ",
-                     "-u ", account$APISecret, ": ",
+                     "-u ", account$apiSecret, ": ",
                      "--data-urlencode script@", filePath)
   jsonRes <- system(curlCall, intern=TRUE)
   
