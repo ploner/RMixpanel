@@ -29,9 +29,20 @@ mixpanelJQLQuery <- function(
   jsonRes <- system(curlCall, intern=TRUE)
   
   ## Parse to data.frame.
-  res <- jsonlite::fromJSON(jsonRes)
-  res <- data.frame(unlist(res[[1]]), res[[-1]])
-  colnames(res) <- columnNames
+  rawRes <- jsonlite::fromJSON(jsonRes)
+  res <- c()
+  for(i in 1:length(rawRes)) {
+    if (class(rawRes[[i]]) == "data.frame")
+      res <- cbind(res, rawRes[[i]])
+    else
+      res <- cbind(res, unlist(rawRes[[i]]))
+  }
+
+  if(!missing(columnNames))
+    colnames(res) <- columnNames
+  
+  if (length(toNumeric) && toNumeric[1] < 0)
+    toNumeric <- (1:ncol(res))[toNumeric]
   for(i in toNumeric)
     res[, i] <- as.numeric(res[, i])
   res
