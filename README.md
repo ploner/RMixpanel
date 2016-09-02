@@ -168,9 +168,9 @@ Here an example without transforming the resulting JSON into handy R objects:
 ```
 
 
-#### Perform a custom JQL Query 
+#### JQL: simple in-line query 
 
-The JQL Query language opens a wide spectrum of possibilities. Here we show only a very basic example - getting the event count per user ('distinct_id'). For more complex queries consult also the Mixpanel JQL API Reference: https://mixpanel.com/help/reference/jql/api-reference#api/transformations/reduce.   
+The JQL Query language opens a wide spectrum of possibilities. As a simple example we extract the event count per user ('distinct_id'). The Mixpanel JQL API Reference can be found on https://mixpanel.com/help/reference/jql/api-reference#api/transformations/reduce.   
 
 ``` r
 jqlQuery <- '
@@ -186,3 +186,34 @@ res <- mixpanelJQLQuery(account, jqlQuery,
                         columnNames=c("distinctID", "Count"), toNumeric=2)
 hist(res$Count)
 ```
+
+#### Get DAU using JQL 
+
+Here we show how to calculate the metric Daily Active Users (DAU) when the user ID is different from the distinct_id. First write the JQL query and save it into a file named jqlDAU.js:
+
+``` js
+function today(addDays) {
+  var day = new Date(); 
+  day.setDate(day.getDate() + (addDays || 0));
+  return day.toISOString().substr(0, 10);
+}
+
+function main() {
+  return Events({
+    from_date: today(-6),
+    to_date: today()
+  })
+  .groupBy(["properties.UserID", getDay], function(count, events) {
+    count = count || 0;
+    return count + events.length;
+  })
+  .groupBy(["key.1"], mixpanel.reducer.count());
+}
+```
+
+Now use the JQL file by this simple one-liner:
+
+``` r
+mixpanelJQLQuery(account, jqlScripts="jqlDAU.js")
+```
+
