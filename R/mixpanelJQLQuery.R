@@ -38,6 +38,7 @@ mixpanelJQLQuery <- function(
       res <- cbind(res, unlist(rawRes[[i]]))
   }
 
+  res <- as.data.frame(res, stringsAsFactors=FALSE)
   if(!missing(columnNames))
     colnames(res) <- columnNames
   
