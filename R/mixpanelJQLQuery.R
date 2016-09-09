@@ -26,7 +26,7 @@ mixpanelJQLQuery <- function(
   curlCall <- paste0("curl https://mixpanel.com/api/2.0/jql ",
                      "-u ", account$apiSecret, ": ",
                      "--data-urlencode script@", filePath)
-  jsonRes <- system(curlCall, intern=TRUE)
+  jsonRes <- paste(system(curlCall, intern=TRUE), collapse="")
   
   ## Parse to data.frame.
   rawRes <- jsonlite::fromJSON(jsonRes)
