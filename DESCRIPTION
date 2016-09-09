@@ -1,9 +1,10 @@
 Package: RMixpanel
-Version: 0.4-0
-Date: 2016-08-11
+Version: 0.4-1
+Date: 2016-09-05
 Title: R API for Mixpanel
-Author: Meinhard Ploner
-Maintainer: Meinhard Ploner <meinhard.ploner@gmail.com>
+Authors@R: c(
+  person("Meinhard", "Ploner", role=c("aut", "cre", "cph"), email="meinhard.ploner@gmail.net"),
+	person("ProSiebenSat.1 Digital GmbH", role="cph"))
 Depends: R (>= 3.2.0)
 Description: Provides an interface to many endpoints of Mixpanel's Data Export, Engage and JQL API. The R functions allow for event and profile data export as well as for segmentation, retention and addiction analysis. Results are always parsed into convenient R objects. Furthermore it is possible to load and update profiles. 
 Imports: digest, jsonlite, uuid, RCurl

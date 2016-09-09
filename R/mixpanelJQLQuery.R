@@ -2,7 +2,7 @@ mixpanelJQLQuery <- function(
   account,      # Mixpanel account.
   jqlString,    # Option (1): JQL script as string.
   jqlScripts,   # Option (2): List of JQL script file names.
-  paths=".",    # Path to search JS files.
+  paths=".",    # Paths to search JS files.
   columnNames,  # Column names for the resulting data.frame.
   toNumeric=c() # Column indices which should be converted to numeric.
 ) {

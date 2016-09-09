@@ -6,7 +6,7 @@
 \description{This method performs a JQL Query with some custom script as parameter. The query string can be given either as character vector or saved into a file and passed via file name.}
 
 \usage{
-mixpanelJQLQuery(account, jqlString, jqlScripts, path=".", columnNames, toNumeric=c())
+mixpanelJQLQuery(account, jqlString, jqlScripts, paths=".", columnNames, toNumeric=c())
 }
 
 \arguments{
