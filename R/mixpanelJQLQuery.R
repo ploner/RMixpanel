@@ -28,8 +28,8 @@ mixpanelJQLQuery <- function(
                      "--data-urlencode script@", filePath)
   
   ## Results could be truncated.
-  results <- system(curlCall, intern=TRUE, ignore.stdout=FALSE, 
-                    ignore.stderr=FALSE)
+  results <- system(curlCall, intern=TRUE, ignore.stdout=TRUE, 
+                    ignore.stderr=TRUE)
   jsonRes <- paste(results, collapse="")
   
   ## Parse to data.frame.
