@@ -1,7 +1,7 @@
 mixpanelJQLQuery <- function(
   account,      # Mixpanel account.
-  jqlString,    # Option (1): JQL script as string.
-  jqlScripts,   # Option (2): List of JQL script file names.
+  jqlString,    # JQL script as string.
+  jqlScripts,   # List of JQL script file names.
   paths=".",    # Paths to search JS files.
   columnNames,  # Column names for the resulting data.frame.
   toNumeric=c() # Column indices which should be converted to numeric.
@@ -10,15 +10,19 @@ mixpanelJQLQuery <- function(
   filePath = paste("temp_", uuid::UUIDgenerate(), ".js", sep="")
   on.exit( { unlink(filePath) } )
   
+  append <- FALSE
   if(!missing(jqlString)) {
-    cat(jqlString, file=filePath)
-    
-  } else {
+    cat(jqlString, file=filePath, append=append)
+    append <- TRUE
+  }
+  
+  if(!missing(jqlScripts)) {
     for(i in 1:length(jqlScripts))
       for(path in paths) {
         fn <- file.path(path, jqlScripts[i])
         if(file.exists((fn)))
-          cat(readLines(fn), file=filePath, append=(i>1))
+          cat(readLines(fn), file=filePath, append=append)
+        append <- TRUE
       }
   }
   
