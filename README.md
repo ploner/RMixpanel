@@ -200,8 +200,8 @@ function today(addDays) {
 
 function main() {
   return Events({
-    from_date: today(-6),
-    to_date: today()
+    from_date: today(dayFrom),
+    to_date: today(dayTo)
   })
   .groupBy(["properties.UserID", getDay], function(count, events) {
     count = count || 0;
@@ -211,9 +211,9 @@ function main() {
 }
 ```
 
-Now use the JQL file by this simple one-liner:
+The parameters <dayFrom> and <dayTo> define the date range. As you may see, they are not defined in the JQL script. To be transparant, we add them directly in the final R call. Setting them to -7 and -1 gives the DAU values for the last 7 whole days:
 
 ``` r
-mixpanelJQLQuery(account, jqlScripts="jqlDAU.js")
+mixpanelJQLQuery(account, jqlString="dayFrom=-7; dayTo=-1;", jqlScripts="jqlDAU.js")
 ```
 
