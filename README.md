@@ -3,7 +3,7 @@
 
 The package RMixpanel provides an interface from R to Mixpanel's API endpoints 
 (see https://mixpanel.com/docs/api-documentation/data-export-api and https://mixpanel.com/help/reference/http). 
-For the most frequently used API endpoints (segmentation, retention, engage, export, etc.) custom methods 
+For the most frequently used API endpoints (segmentation, retention, funnel, engage, export, etc.) custom methods 
 make the parameterization more convenient and do the conversion from JSON to a corresponding R data.frame or R matrix. Furthermore it is possible to update or delete user profiles.
 
 ### Features
@@ -14,6 +14,7 @@ make the parameterization more convenient and do the conversion from JSON to a c
   - `segmentation/`: get the segmentation matrix using `mixpanelGetSegmentation`. 
   - `retention/`: get the retention matrix using `mixpanelGetRetention`.
   - `addiction/`: get the addiction matrix using `mixpanelGetAddiction`.
+  - `funnel/`: get funnel data using `mixpanelGetFunnel`.
   - `engage/`: 
     - get the requested people profiles using `mixpanelGetProfiles`.
     - update or delete a people profile using `mixpanelUpdateProfile`.
