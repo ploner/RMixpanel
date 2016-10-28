@@ -46,7 +46,7 @@ mixpanelGetRetention <- function(
     retainPerc=data[, -1] / data[, 1] * 100
     )
   
-  class(obj) = "retention"
+  class(obj) = c("retention", "list")
   obj
 }
 
