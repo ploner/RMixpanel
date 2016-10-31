@@ -6,6 +6,7 @@ mixpanelGetRetention <- function(
   unit="day",             # Defaults to 'day'.
   retentionType="birth",  # 'birth' (=First time) or 'compounded' (=Recurring). Defaults to 'birth'.
   intervalCount=15,       # Number of intervals per cohort to return.
+  verbose=TRUE,        # Level of verbosity.
   ...                     # Additional arguments to Mixpanel API beside of <event>, <date_from>, <date_to>
                           # >> born_event='AppInstall'   # Needed for retention type 'birth'!!!
                           # >> born_where='properties["VersionString"]=="1.1"'
@@ -20,7 +21,7 @@ mixpanelGetRetention <- function(
   args$retention_type = retentionType
   args$interval_count = intervalCount
   
-  data = mixpanelGetData(account, "retention/", args, data=TRUE)
+  data = mixpanelGetData(account, "retention/", args, data=TRUE, verbose=verbose)
   
   ## Returns a list of (count, retention[])-pairs. Retention arrays are of different lengths. 
   data = jsonlite::fromJSON(data)

@@ -3,6 +3,7 @@ mixpanelGetFunnel <- function(
   funnel,                 # Name <or> ID of the funnel.
   from,
   to=from,
+  verbose=TRUE,        # Level of verbosity.
                           # the first step in the funnel. May not be greater than 90 days.
   ...                     # Additional arguments to Mixpanel API. E.g.
                           # >> interval=5
@@ -19,7 +20,7 @@ mixpanelGetFunnel <- function(
   args$from_date = createDateSequence(from)
   args$to_date = createDateSequence(to)
   
-  data = mixpanelGetData(account, "funnels/", args, data=TRUE)
+  data = mixpanelGetData(account, "funnels/", args, data=TRUE, verbose=verbose)
   
   ## Returns a list of funnels per time interval.
   data = jsonlite::fromJSON(data)

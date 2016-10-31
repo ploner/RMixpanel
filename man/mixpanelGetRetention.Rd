@@ -6,7 +6,7 @@
 \description{Get retention data from Mixpanel API. The resulting object can be printed nicely using \code{print.retention}.}
 
 \usage{mixpanelGetRetention(account, event, from, to, unit, retentionType, 
-  intervalCount, ...)}
+  intervalCount, verbose=TRUE, ...)}
 
 \arguments{
 \item{account}{A mixpanel account, as defined in \code{mixpanelCreateAccount}.}
@@ -16,6 +16,7 @@
 \item{unit}{Defaults to 'day'.}
 \item{retentionType}{\code{birth} (=First time) or \code{compounded} (=Recurring). Defaults to 'birth'.}
 \item{intervalCount}{Number of intervals per cohort to return.}
+\item{verbose}{If \code{TRUE} more output is generated.}
 \item{...}{ Additional arguments to Mixpanel API. E.g. \code{born_event='Event name'}  (needed for retention type 'birth'), or \code{born_where='properties["Prop name"]=="value"'}.}
 }
 
