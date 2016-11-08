@@ -39,6 +39,13 @@ mixpanelJQLQuery <- function(
   
   ## Parse to data.frame.
   rawRes <- jsonlite::fromJSON(jsonRes)
+  
+  ## Error Handling.
+  if("error" %in% names(rawRes))
+    stop(paste0("\nJQL query stopped. Message:\n", rawRes$error))    
+  if(length(rawRes) == 0)
+    return(as.data.frame(rawRes))
+  
   res <- c()
   for(i in 1:length(rawRes)) {
     if (class(rawRes[[i]]) == "data.frame")
