@@ -16,7 +16,7 @@
 
 \value{Matrix consisting of one row for each cohort. The first column holds the cohort sizes, the following columns the counts for subsequent periods. If \code{percentages} is \code{TRUE}, the counts are percentages (except first column).}
 
-\references{\url{https://mixpanel.com/docs/api-documentation/data-export-api#retention-default}}
+\references{\url{https://mixpanel.com/help/reference/data-export-api#retention}}
 
 \author{Meinhard Ploner}
 

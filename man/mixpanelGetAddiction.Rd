@@ -20,7 +20,7 @@
 
 \value{Matrix consisting of one row for each cohort. The first column holds the cohort sizes, the following columns the number of profiles having tracked events within the specified time interval.}
 
-\references{\url{https://mixpanel.com/docs/api-documentation/data-export-api#addiction-default}}
+\references{\url{https://mixpanel.com/help/reference/data-export-api#retention}}
 
 \author{Meinhard Ploner}
 

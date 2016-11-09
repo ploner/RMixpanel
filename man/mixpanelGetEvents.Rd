@@ -15,7 +15,7 @@
 \item{daysPerBlock}{Data is downloaded in blocks of fixed size.}
 \item{select}{If \code{"select"} is an array of column names, only the specified properties are selected. If \code{TRUE}, all columns are selected.}
 \item{verbose}{If \code{TRUE} more output is generated.}
-\item{...}{Additional arguments to be included in the Mixpanel API request. E.g. where = "properties[\"$os\"]==\"iPhone OS\""). See also \url{https://mixpanel.com/docs/api-documentation/data-export-api#events-default}.}
+\item{...}{Additional arguments to be included in the Mixpanel API request. E.g. where = "properties[\"$os\"]==\"iPhone OS\""). See also \url{https://mixpanel.com/help/reference/data-export-api#events}.}
 }
 
 \value{A character matrix showing one event per line. The first column represents the name of the event, the other column the event properties.}

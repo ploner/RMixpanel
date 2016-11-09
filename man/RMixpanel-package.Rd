@@ -19,7 +19,7 @@ The package provides access to the Mixpanel API. It allows to read raw data as w
 Maintainer: \packageMaintainer{RMixpanel}
 }
 
-\references{\url{https://mixpanel.com/docs/api-documentation/data-export-api}}
+\references{\url{https://mixpanel.com/help/reference/data-export-api}}
 
 \keyword{package}
 \keyword{mixpanel}

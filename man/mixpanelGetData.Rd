@@ -13,7 +13,7 @@ mixpanelGetData(account, method="export/", args, validitySeconds=60, verbose=TRU
 \arguments{
   \item{account}{A mixpanel account, as defined in \code{mixpanelCreateAccount}.}
   \item{method}{API method (route).}
-  \item{args}{Arguments as described in \url{https://mixpanel.com/docs/api-documentation/data-export-api}.}
+  \item{args}{Arguments as described in \url{https://mixpanel.com/help/reference/data-export-api}.}
   \item{validitySeconds}{Expiration of API request.}
   \item{verbose}{If \code{FALSE}, less information is shown on the console. }
   \item{loadFromFile}{If \code{TRUE}, persisted data is loaded instead of doing a http request.}
@@ -36,7 +36,7 @@ account = mixpanelCreateAccount("ProjectName",
 mixpanelGetData(account, method="funnels/list/", args=list(), data=TRUE)
 }}
 
-\references{\url{https://mixpanel.com/docs/api-documentation/data-export-api}}
+\references{\url{https://mixpanel.com/help/reference/data-export-api}}
 
 \author{Meinhard Ploner}
 

@@ -2,7 +2,7 @@
 
 
 The package RMixpanel provides an interface from R to Mixpanel's API endpoints 
-(see https://mixpanel.com/docs/api-documentation/data-export-api and https://mixpanel.com/help/reference/http). 
+(see https://mixpanel.com/help/reference/data-export-api and https://mixpanel.com/help/reference/exporting-raw-data). 
 For the most frequently used API endpoints (segmentation, retention, funnel, engage, export, etc.) custom methods 
 make the parameterization more convenient and do the conversion from JSON to a corresponding R data.frame or R matrix. Furthermore it is possible to update or delete user profiles.
 
@@ -95,7 +95,7 @@ In order to use the various methods of this package, we need to save the account
 
 Given the people profiles have two properties named KPI1 and KPI2, the following lines of code will load these properties for all profiles matching the query `KPI1 >= 1.32` and fill an R data.frame with the corresponding data. The `hist` method could be used to generate a histogram of one of the KPI's. 
 
-More complex queries including logical operators and typecasts can be generated using the syntax described on [Mixpanel's documentation](https://mixpanel.com/docs/api-documentation/data-export-api#segmentation-expressions).
+More complex queries including logical operators and typecasts can be generated using the syntax described on [Mixpanel's documentation](https://mixpanel.com/help/reference/data-export-api#segmentation-expressions).
 
 ``` r
 > profiles = mixpanelGetProfiles(account, where='properties["KPI1"] > 1.32', 
@@ -172,7 +172,7 @@ Here an example without transforming the resulting JSON into handy R objects:
 
 #### JQL: simple in-line query 
 
-The JQL Query language opens a wide spectrum of possibilities. As a simple example we extract the event count per user ('distinct_id'). The Mixpanel JQL API Reference can be found on https://mixpanel.com/help/reference/jql/api-reference#api/transformations/reduce.   
+The JQL Query language opens a wide spectrum of possibilities. As a simple example we extract the event count per user ('distinct_id'). The Mixpanel JQL API Reference can be found on https://mixpanel.com/help/reference/jql/api-reference.   
 
 ``` r
 jqlQuery <- '

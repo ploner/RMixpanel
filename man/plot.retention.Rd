@@ -19,7 +19,7 @@
 \item{...}{Not used.}
 }
 
-\references{\url{https://mixpanel.com/docs/api-documentation/data-export-api#retention-default}}
+\references{\url{https://mixpanel.com/help/reference/data-export-api#retention}}
 
 \author{Meinhard Ploner}
 

@@ -9,7 +9,7 @@
 
 \arguments{
 \item{account}{A mixpanel account, as defined in \code{mixpanelCreateAccount}.}
-\item{where}{Expression, see \url{https://mixpanel.com/docs/api-documentation/data-export-api#segmentation-expressions}.}
+\item{where}{Expression, see \url{https://mixpanel.com/help/reference/data-export-api#segmentation-expressions}.}
 \item{verbose}{If \code{TRUE} more output is generated.}
 }
 
@@ -29,7 +29,7 @@ account = mixpanelCreateAccount("ProjectName",
 mixpanelGetProfilesCount(account, where='properties["KPI1"] > 1.32')
 }}
 
-\references{\url{https://mixpanel.com/docs/api-documentation/data-export-api#engage-default}}
+\references{\url{https://mixpanel.com/help/reference/data-export-api#people-analytics}}
 
 \author{Meinhard Ploner}
 

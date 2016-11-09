@@ -17,7 +17,7 @@
 \item{on}{Array of up to 2 property names for segmentation. An empty array returns un-segmented counts. E.g. 'properties["$os"]'}.
 \item{action}{Could be "sum" or "average". If given, 1st property listed in \code{on} is aggregated by this function.}
 \item{verbose}{If \code{FALSE} less output is generated.}
-\item{...}{Additional arguments to Mixpanel API. See also \url{https://mixpanel.com/docs/api-documentation/data-export-api#segmentation-default}.}
+\item{...}{Additional arguments to Mixpanel API. See also \url{https://mixpanel.com/help/reference/data-export-api#segmentation}.}
 }
 
 \value{2 or 3-dimensional array showing event counts. The first dimension represents the time in the specified unit. The other dimension(s) are determined by the segmention properties.}

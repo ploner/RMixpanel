@@ -9,7 +9,7 @@
 
 \arguments{
   \item{account}{A mixpanel account, as defined in \code{mixpanelCreateAccount}.}
-  \item{where}{Expression, see \url{https://mixpanel.com/docs/api-documentation/data-export-api#segmentation-expressions}.}
+  \item{where}{Expression, see \url{https://mixpanel.com/help/reference/data-export-api#segmentation-expressions}.}
   \item{select}{If \code{"select"} is an array of column names, only the specified properties are selected. If \code{TRUE}, all columns are selected.}
   \item{maxPage}{The API delivers usually about 1000 users per page. Setting this parameter can limit the response for testing purposes. A value of 9 returns page 0 to page 9, i.e. 10000 profiles.}
   \item{verbose}{If \code{FALSE} less output is generated.}
@@ -31,7 +31,7 @@ profiles = mixpanelGetProfiles(account, where='properties["KPI1"] > 1.32',
 print(profiles)
 }}
 
-\references{\url{https://mixpanel.com/docs/api-documentation/data-export-api#engage-default}}
+\references{\url{https://mixpanel.com/help/reference/data-export-api#people-analytics}}
 
 \author{Meinhard Ploner}
 
