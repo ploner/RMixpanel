@@ -1,6 +1,6 @@
 mixpanelGetSegmentation <- function(
   account,
-  event,                   # Must be included. E.g. '[Action] Video content view started'.
+  event,                   # Must be included. E.g. 'Video Start'.
   from,
   to=from,
   unit="day",              # 
@@ -19,48 +19,56 @@ mixpanelGetSegmentation <- function(
   
   segmentDim = length(on)
   outDim = segmentDim + 1
+  hasAction <- !missing("action")
   
   if (segmentDim > 2)
     stop("Up to 2 segmentation variables are handled by API.")
   
-  if (!missing("action")) {
+  if (hasAction) {
     args$action = action
-    on[1] = paste('number(', on[1], ')', sep='') # Convert to numeric.
-    outDim = outDim - 1  # Aggregation reduces dimension count.
+    ## Convert to numeric for aggregation function SUM, AVG, ...
+    on[1] = paste('number(', on[1], ')', sep='')
+    ## Aggregation reduces dimension count.
+    outDim = outDim - 1
   }
   
   if (segmentDim == 2) {
     args$inner = on[1]
     args$outer = on[2]
     data = mixpanelGetData(account, "segmentation/multiseg", args, data=TRUE, verbose=verbose)
+    values = jsonlite::fromJSON(data)$data$values
 
+  } else if(hasAction) {
+    args$on = on 
+    data = mixpanelGetData(account, "segmentation/sum", args, data=TRUE, verbose=verbose)
+    values = list(jsonlite::fromJSON(data)$results)
+    names(values) <- event
+    
   } else {
     args$on = on 
     data = mixpanelGetData(account, "segmentation/", args, data=TRUE, verbose=verbose)
+    values = jsonlite::fromJSON(data)$data$values
   }
-  
-  ## API call.
-  data = jsonlite::fromJSON(data)$data
 
   if (outDim == 3) {
-    outerNames = names(data$values)
-    innerNames = names(data$values[[1]])
-    timeNames = names(data$values[[1]][[1]])
+    outerNames = names(values)
+    innerNames = names(values[[1]])
+    timeNames = names(values[[1]][[1]])
     
     kOuter = length(outerNames)
     kInner = length(innerNames)
     kTimes = length(timeNames)
     
-    data = array(unlist(data$values), c(kTimes, kInner, kOuter), dimnames=list(timeNames, innerNames, outerNames))
+    data = array(unlist(values), c(kTimes, kInner, kOuter), dimnames=list(timeNames, innerNames, outerNames))
     data[order(timeNames), , , drop=FALSE]
     
   } else { # outDim == 2 or 1.
-    labels = names(data$values[[1]])
-    n = length(labels)
-    k = length(data[[2]])
-    groups = names(data[[2]])
+    timeLabels = names(values[[1]])
+    n = length(timeLabels)
+    groups = names(values)
+    k = length(groups)
     
-    data = matrix(unlist(data[[2]]), n, k, byrow=FALSE, dimnames=list(labels, groups))
-    data[order(labels), , drop=FALSE]
+    data = matrix(unlist(values), n, k, byrow=FALSE, dimnames=list(timeLabels, groups))
+    data[order(timeLabels), , drop=FALSE]
   }
 }
