@@ -7,6 +7,6 @@ Authors@R: c(
 	person("ProSiebenSat.1 Digital GmbH", role="cph"))
 Depends: R (>= 3.2.0)
 Description: Provides an interface to many endpoints of Mixpanel's Data Export, Engage and JQL API. The R functions allow for event and profile data export as well as for segmentation, retention, funnel and addiction analysis. Results are always parsed into convenient R objects. Furthermore it is possible to load and update profiles. 
-Imports: digest, jsonlite, uuid, RCurl
+Imports: jsonlite, uuid, RCurl
 License: MIT + file LICENSE
 URL: https://www.r-project.org, https://github.com/ploner/RMixpanel

@@ -45,7 +45,6 @@ require(RMixpanel)
 ### Dependencies
 
 The package depends on
-- digest
 - jsonlite
 - uuid
 - RCurl 
