@@ -5,13 +5,14 @@
 
 \description{Get funnel data from Mixpanel API.}
 
-\usage{mixpanelGetFunnel(account, funnel, from, to=from, verbose=TRUE, ...)}
+\usage{mixpanelGetFunnel(account, funnel, from, to=from, customEvents, verbose=TRUE, ...)}
 
 \arguments{
 \item{account}{A mixpanel account, as defined in \code{mixpanelCreateAccount}.}
 \item{funnel}{Either name or ID of the funnel. See also \code{mixpanelGetFunnelList}.}
 \item{from}{Start date in either format <"yyyy-mm-dd"> or <yyyymmdd>. Inclusive. }
 \item{to}{End date in either format <"yyyy-mm-dd"> or <yyyymmdd>. Inclusive.}
+\item{customEvents}{If the funnel includes custom events, add a data.frame to assign readable names using the format: \code{data.frame(custom_event_id=c(121212, ...), event_name=c("Event One", ...))}.}
 \item{verbose}{If \code{TRUE} more output is generated.}
 \item{...}{ Additional arguments to Mixpanel API. E.g. \code{interval=14}, \code{unit='week'}, \code{interval=90}, ...}
 }

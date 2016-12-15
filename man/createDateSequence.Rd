@@ -14,7 +14,7 @@
 
 \value{Array of daily dates in format yyyy-mm-dd as needed for use in Mixpanel's API.'}
 
-\references{\url{https://mixpanel.com/docs/api-documentation/data-export-api}}
+\references{\url{https://mixpanel.com/help/reference/data-export-api}}
 
 \author{Meinhard Ploner}
 

@@ -23,11 +23,7 @@
 \value{2 or 3-dimensional array showing event counts. The first dimension represents the time in the specified unit. The other dimension(s) are determined by the segmention properties.}
 
 \references{
-\url{https://mixpanel.com/docs/api-documentation/data-export-api#segmentation-default},
-
-\url{https://mixpanel.com/docs/api-documentation/data-export-api#segmentation-sum},
-
-\url{https://mixpanel.com/docs/api-documentation/data-export-api#segmentation-average}
+\url{https://mixpanel.com/help/reference/data-export-api#segmentation}
 }
 
 \author{Meinhard Ploner}
