@@ -1,11 +1,8 @@
 mixpanelGetFunnel <- function(
-  account,
+  account,            # Mixpanel account with credentials and evt. custom event names. 
   funnel,             # Name <or> ID of the funnel.
   from,
   to=from,
-  customEvents,       # If the funnel includes custom events, add a data.frame to assign 
-                      # readable names using the format: 
-                      #   data.frame(custom_event_id=c(121212, ...), event_name=c("Event One", ...))
   verbose=TRUE,       # Level of verbosity.
   ...                 # Additional arguments to Mixpanel API. E.g.
                       # >> interval=5
@@ -30,19 +27,16 @@ mixpanelGetFunnel <- function(
   res <- lapply(data$data, "[[", "steps")
   class(res) <- c("funnel", "list")
   
-  if(!missing("customEvents")) {
+  if("customEvents" %in% names(account)) {
     ## Update all funnels.
     for(iFunnel in 1:length(res)) {
       funnel <- res[[iFunnel]]
       
-      ## Replace ID with name.
-      isCustom <- !is.na(funnel$custom_event)
-      inds <- match(funnel$custom_event_id[isCustom], customEvents$custom_event_id)
-      funnel$event[isCustom] <- funnel$goal[isCustom] <- customEvents$event_name[inds] 
+      for(i in which(!is.na(funnel$custom_event)))
+        funnel$event[i] <- funnel$goal[i] <- customEventNameDecode(account, funnel$custom_event_id[i]) 
       
       res[[iFunnel]] <- funnel
     }
-    
   }
   
   res

@@ -10,6 +10,8 @@ mixpanelGetSegmentation <- function(
   verbose=TRUE,
   ...                      # Additional arguments to Mixpanel API.
 ) {
+  event <- customEventNameEncode(account, event)
+  
   args = list(...)
   args$event = event
   args$from_date = createDateSequence(from)

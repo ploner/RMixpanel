@@ -9,7 +9,7 @@
 
 \arguments{
 \item{account}{A mixpanel account, as defined in \code{mixpanelCreateAccount}.}
-\item{event}{Event name. If empty, all events are returned.}
+\item{event}{Event name. If empty, all events are returned. Custom events are supported, if \code{account} is set up correctly using \code{mixpanelCreateAccount.}}
 \item{from}{Start date in either format <"yyyy-mm-dd"> or <yyyymmdd>. Inclusive. }
 \item{to}{End date in either format <"yyyy-mm-dd"> or <yyyymmdd>. Inclusive.}
 \item{unit}{Defaults to 'day'.}
