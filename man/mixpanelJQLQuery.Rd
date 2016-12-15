@@ -14,8 +14,8 @@ mixpanelJQLQuery(account, jqlString, jqlScripts, paths=".", columnNames, toNumer
   \item{jqlString}{JQL script as string.}
   \item{jqlScripts}{List of JQL script file names.}
   \item{paths}{Paths to search JS files.}
-  \item{columnNames}{Column names for the resulting data.frame. }
-  \item{toNumeric}{Column indices which should be converted to numeric.}
+  \item{columnNames}{Column names for the resulting data.frame. Optional.}
+  \item{toNumeric}{Column indices which should be converted to numeric. Optional.}
 }
 
 \value{If \code{data==TRUE}, the method returns the response of the API request (raw character vector). Otherwise nothing is returned.}
