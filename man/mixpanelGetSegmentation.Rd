@@ -20,7 +20,7 @@
 \item{...}{Additional arguments to Mixpanel API. See also \url{https://mixpanel.com/help/reference/data-export-api#segmentation}.}
 }
 
-\value{2 or 3-dimensional array showing event counts. The first dimension represents the time in the specified unit. The other dimension(s) are determined by the segmention properties.}
+\value{2 or 3-dimensional array showing event counts. The first dimension represents the time in the specified unit. The other dimension(s) are determined by the segmention properties. Usually the Mixpanel API does not return more than 60 or 100 slots per segmentation property. For more data, use the events API (\code{mixpanelGetEvents}).}
 
 \references{
 \url{https://mixpanel.com/help/reference/data-export-api#segmentation}
