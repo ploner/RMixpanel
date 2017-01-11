@@ -26,7 +26,7 @@ mixpanelGetData <- function(
   for (trial in 0:retryCount) {
     code = -1
     try({
-      res <- getURL(url)
+      res <- RCurl::getURL(url)
       break
     }, silent=TRUE)
     
