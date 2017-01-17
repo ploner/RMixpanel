@@ -40,7 +40,7 @@ mixpanelGetData <- function(
       filePath = paste(account$dataPath, "/", fileName, args$from_date, ".txt", sep="") # Events of 1 day.
     else
       filePath = paste(account$dataPath, "/", fileName, ".txt", sep="")
-    cat(res, file=filePath)
+    cat(res, file=filePath, sep="\n")
   }
   
   if (data) {
