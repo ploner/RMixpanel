@@ -4,7 +4,8 @@ mixpanelGetEventsFromFiles = function(
   to=from,
   eventNames=c(),       # Import only selected events?
   select=TRUE,          # Requested column names.
-  blocksize=500000,     # Block size in reading files from disk. 
+  blocksize=500000,     # Block size in reading files from disk.
+  df=FALSE,             # Clean data and return data.frame instead of character matrix.
   verbose=TRUE
 ) {
   dates = createDateSequence(from, to)
@@ -51,9 +52,18 @@ mixpanelGetEventsFromFiles = function(
   }
   
   if(verbose)
-    cat("### Flatten matrix           -", date(), "\n")
-  alldata = getFlatMatrix(alldata)
+    cat("### Flatten matrix            -", date(), "\n")
+  if (nrow(alldata) > 0) {
+    alldata <- getFlatMatrix(alldata)
+    if(df) {
+      alldata <- data.frame(alldata, check.names=FALSE, stringsAsFactors=FALSE)
+      alldata$time <- as.numeric(alldata$time)
+      if("EventTimestamp" %in% colnames(alldata))
+        alldata$EventTimestamp <- suppressWarnings(as.numeric(alldata$EventTimestamp))
+    }
+  }
+  
   if(verbose)
-    cat("### Done.                    -", date(), "\n")
+    cat("### Done.                     -", date(), "\n")
   alldata
 }

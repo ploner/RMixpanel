@@ -7,6 +7,7 @@ mixpanelGetEvents <- function(
   daysPerBlock=10,     # Choose a smaller value if too much events.
   select=TRUE,         # If a vector of column names, only specified columns are selected.
   verbose=TRUE,        # Level of verbosity.
+  df=FALSE,            # Clean data and return data.frame instead of character matrix.
   ...                  # Additional arguments to Mixpanel API beside of <event>, <date_from>, <date_to>
                        # E.g. where='properties["$os"]=="iPhone OS"'
 ) {
@@ -36,8 +37,15 @@ mixpanelGetEvents <- function(
   if(verbose)
     cat(".\n")
   
-  if (nrow(alldata) > 0)
-    getFlatMatrix(alldata)
-  else
-    alldata
+  if (nrow(alldata) > 0) {
+    alldata <- getFlatMatrix(alldata)
+    if(df) {
+      alldata <- data.frame(alldata, check.names=FALSE, stringsAsFactors=FALSE)
+      alldata$time <- as.numeric(alldata$time)
+      if("EventTimestamp" %in% colnames(alldata))
+        alldata$EventTimestamp <- as.numeric(alldata$EventTimestamp)
+    }
+  }
+  
+  alldata
 }
