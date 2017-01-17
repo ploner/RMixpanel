@@ -23,7 +23,7 @@ mixpanelGetEventsFromFiles = function(
       if(verbose)
         cat("### Scan block", block, "of events  -", date(), "\n")
       data = readLines(con, n=blocksize)
-      if(length(data) == 0)
+      if(length(data) == 0 || (length(data) == 1 && data == ""))
         break
       
       if(verbose)
