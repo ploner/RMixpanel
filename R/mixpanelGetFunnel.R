@@ -11,7 +11,7 @@ mixpanelGetFunnel <- function(
                       # the first step in the funnel. May not be greater than 90 days.
 ) {
   ## Extract funnel ID when <funnel> is name instead of ID.
-  funnelList <- mixpanelGetFunnelList(account)
+  funnelList <- mixpanelGetFunnelList(account, verbose=verbose)
   if(!funnel %in% funnelList$funnel_id)
     funnel <- funnelList$funnel_id[funnelList$name == funnel]
   

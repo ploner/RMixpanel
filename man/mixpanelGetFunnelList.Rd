@@ -5,10 +5,11 @@
 
 \description{Get list of all defined funnels from Mixpanel API.}
 
-\usage{mixpanelGetFunnelList(account)}
+\usage{mixpanelGetFunnelList(account, verbose=TRUE)}
 
 \arguments{
 \item{account}{A mixpanel account, as defined in \code{mixpanelCreateAccount}.}
+\item{verbose}{If \code{TRUE} more output is generated.}
 }
 
 \value{A data.frame with 1 row for each funnel. Columns include 
