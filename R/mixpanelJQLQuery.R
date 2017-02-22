@@ -48,10 +48,16 @@ mixpanelJQLQuery <- function(
   
   res <- c()
   for(i in 1:length(rawRes)) {
-    if (class(rawRes[[i]]) == "data.frame")
-      res <- cbind(res, rawRes[[i]])
-    else
-      res <- cbind(res, unlist(rawRes[[i]]))
+    ri <- rawRes[[i]]
+    if (class(ri) == "data.frame") {
+      if(length(res))
+        res <- cbind(res, ri) 
+      else
+        res <- ri
+    } else {
+      x <- unlist(ri)
+      res <- cbind(res, matrix(x, length(ri), byrow=TRUE))
+    }
   }
 
   res <- as.data.frame(res, stringsAsFactors=FALSE)
