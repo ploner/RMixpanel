@@ -35,6 +35,7 @@ mixpanelGetData <- function(
       if (verbose) {
         cat("parse data...\n")
         print(res)
+        print(strsplit(res, "[\n\r]"))
       }
       res <- unlist(strsplit(res, "[\n\r]"))
       if(verbose)
