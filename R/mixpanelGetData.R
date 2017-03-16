@@ -20,14 +20,20 @@ mixpanelGetData <- function(
       arg = URLencode(arg, reserved=TRUE)
     url = paste(url, name, "=", arg, "&", sep="")
   }
-  if (verbose)
-    cat("## Download ", url, "...\n", sep="")
   
   for (trial in 0:retryCount) {
     code = -1
     try({
+      if (verbose) {
+        urlAnonym <- url
+        substr(urlAnonym, 15, 25) <- "XXXXXXXXXXX"
+        cat("## Download ", urlAnonym, "... ", sep="")
+      }
       res <- RCurl::getURL(url)
-      ## Create vector of events from \n-separated character scalar. 
+      
+      ## Create vector of events from \n-separated character scalar.
+      if (verbose)
+        cat("parse data...\n")
       res <- unlist(strsplit(res, "[\n\r]"))
       break
     }, silent=TRUE)
