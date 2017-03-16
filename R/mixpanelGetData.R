@@ -37,6 +37,8 @@ mixpanelGetData <- function(
         print(res)
       }
       res <- unlist(strsplit(res, "[\n\r]"))
+      if(verbose)
+        print(res)
       break
     }, silent=TRUE)
     
