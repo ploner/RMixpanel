@@ -32,8 +32,10 @@ mixpanelGetData <- function(
       res <- RCurl::getURL(url)
       
       ## Create vector of events from \n-separated character scalar.
-      if (verbose)
+      if (verbose) {
         cat("parse data...\n")
+        print(res)
+      }
       res <- unlist(strsplit(res, "[\n\r]"))
       break
     }, silent=TRUE)
