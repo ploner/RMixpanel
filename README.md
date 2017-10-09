@@ -1,3 +1,5 @@
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/RMixpanel)](https://cran.r-project.org/package=RMixpanel)
+
 ## RMixpanel - Mixpanel API client for R
 
 
