@@ -9,9 +9,11 @@ mixpanelGetData <- function(
   retryCount=0              # 
 ) {
   if(method == "export/") 
-    endpoint = paste('https://', account$apiSecret, '@data.mixpanel.com/api/2.0', sep='')
+    endpoint = 'https://data.mixpanel.com/api/2.0'
   else 
-    endpoint = paste('https://', account$apiSecret, '@mixpanel.com/api/2.0', sep='')
+    endpoint = 'https://mixpanel.com/api/2.0'
+
+  headers = c('Authorization' = paste('Basic ', base64enc::base64encode(charToRaw(paste(account$apiSecret, ':', account$apiSecret, sep=''))), sep=''))
   
   url = paste(endpoint, "/", method, "?", sep="")
   for (name in names(args)) {
@@ -29,7 +31,7 @@ mixpanelGetData <- function(
         substr(urlAnonym, 15, 25) <- "XXXXXXXXXXX"
         cat("## Download ", urlAnonym, "... ", sep="")
       }
-      res <- RCurl::getURL(url)
+      res <- RCurl::getURL(url, httpheader=headers)
       
       ## Create vector of events from \n-separated character scalar.
       if (verbose) {
