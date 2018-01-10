@@ -50,6 +50,7 @@ The package depends on
 - jsonlite
 - uuid
 - RCurl 
+- base64enc
 
 
 ### Examples
