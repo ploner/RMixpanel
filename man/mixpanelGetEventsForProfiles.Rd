@@ -5,7 +5,8 @@
 
 \description{Get a matrix filled with event data for specified people profiles.}
 
-\usage{mixpanelGetEventsForProfiles(account, distinctIDs, from, to, verbose, encoding="UTF-8", ...)}
+\usage{mixpanelGetEventsForProfiles(account, distinctIDs, from, to, verbose, 
+encoding="UTF-8", ...)}
 
 \arguments{
 \item{account}{A mixpanel account, as defined in \code{mixpanelCreateAccount}.}
@@ -17,7 +18,8 @@
 \item{...}{List of additional arguments being included in the Mixpanel API request. E.g. limit=5, ...}
 }
 
-\value{A character matrix showing one event per line. The first column represents the name of the event, the other column the event properties.}
+\value{A character matrix showing one event per line. The first column represents the name of the event, 
+the other column the event properties.}
 
 \author{Meinhard Ploner}
 
