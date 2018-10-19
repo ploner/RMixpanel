@@ -7,7 +7,7 @@
 
 \usage{
 mixpanelGetData(account, method="export/", args, validitySeconds=60, verbose=TRUE, 
-  fileName="", data=FALSE, retryCount=0)
+  fileName="", data=FALSE, retryCount=0, encoding="UTF-8")
 }
 
 \arguments{
@@ -19,6 +19,7 @@ mixpanelGetData(account, method="export/", args, validitySeconds=60, verbose=TRU
   \item{fileName}{File name to persist data (defaults to './temp.txt'). If supplied, account$dataPath is used as path.}
   \item{data}{If \code{FALSE}, data is downloaded, but not returned as function argument.}
   \item{retryCount}{How many times a failed request should be retried?}
+  \item{encoding}{JSON Encoding. Default is UTF8.}
 }
 
 \value{If \code{data==TRUE}, the method returns the response of the API request (raw character vector). Otherwise nothing is returned.}

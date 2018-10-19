@@ -6,7 +6,8 @@ mixpanelGetData <- function(
   verbose=TRUE,
   fileName="",              # File name to persist data (defaults to './temp.txt'). If supplied, account$dataPath is used as path.
   data=FALSE,               # If FALSE, data is downloaded, but not returned as function argument.
-  retryCount=0              # 
+  retryCount=0,             #  
+  encoding="UTF-8"          # See fork https://github.com/jzking/RMixpanel. 
 ) {
   if(method == "export/") 
     endpoint = 'https://data.mixpanel.com/api/2.0'
@@ -31,7 +32,7 @@ mixpanelGetData <- function(
         substr(urlAnonym, 15, 25) <- "XXXXXXXXXXX"
         cat("## Download ", urlAnonym, "... ", sep="")
       }
-      res <- RCurl::getURL(url, httpheader=headers)
+      res <- RCurl::getURL(url, .encoding=encoding) # See fork https://github.com/jzking/RMixpanel. 
       
       ## Create vector of events from \n-separated character scalar.
       if (verbose) {

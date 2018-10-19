@@ -8,6 +8,7 @@ mixpanelGetEvents <- function(
   select=TRUE,         # If a vector of column names, only specified columns are selected.
   verbose=TRUE,        # Level of verbosity.
   df=FALSE,            # Clean data and return data.frame instead of character matrix.
+  encoding="UTF-8",    # See fork https://github.com/jzking/RMixpanel.
   ...                  # Additional arguments to Mixpanel API beside of <event>, <date_from>, <date_to>
                        # E.g. where='properties["$os"]=="iPhone OS"'
 ) {
@@ -28,7 +29,7 @@ mixpanelGetEvents <- function(
     
     if(verbose)
       cat("*** Load events from", dates[1], "to", dates[n], "\n")
-    data = mixpanelGetData(account, "export/", args, data=TRUE, verbose=verbose)
+    data = mixpanelGetData(account, "export/", args, data=TRUE, verbose=verbose, encoding=encoding)
     if(length(data) > 0)
       alldata = merge.matrix(alldata, eventsJson2RMatrix(data, select))
     
