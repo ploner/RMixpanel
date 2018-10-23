@@ -1,6 +1,6 @@
 Package: RMixpanel
-Version: 0.7-0
-Date: 2018-10-19
+Version: 0.7-1
+Date: 2018-10-23
 Title: API for Mixpanel
 Authors@R: c(
   person("Meinhard", "Ploner", role=c("aut", "cre", "cph"), email="meinhard.ploner@gmail.com"),

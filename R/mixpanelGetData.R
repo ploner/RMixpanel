@@ -32,7 +32,7 @@ mixpanelGetData <- function(
         substr(urlAnonym, 15, 25) <- "XXXXXXXXXXX"
         cat("## Download ", urlAnonym, "... ", sep="")
       }
-      res <- RCurl::getURL(url, .encoding=encoding) # See fork https://github.com/jzking/RMixpanel. 
+      res <- RCurl::getURL(url, httpheader=headers, .encoding=encoding) # See fork https://github.com/jzking/RMixpanel. 
       
       ## Create vector of events from \n-separated character scalar.
       if (verbose) {
